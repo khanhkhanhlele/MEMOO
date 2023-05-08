@@ -14,14 +14,15 @@ class iCIFAR10(iData):
     use_path = False
     train_trsf = [
         transforms.RandomCrop(32, padding=4),
-        transforms.RandomHorizontalFlip(p=0.5),
-        transforms.ColorJitter(brightness=63 / 255),
+        transforms.RandomHorizontalFlip(),
+        #transforms.ColorJitter(brightness=63 / 255),
     ]
     test_trsf = []
     common_trsf = [
         transforms.ToTensor(),
         transforms.Normalize(
-            mean=(0.4914, 0.4822, 0.4465), std=(0.2023, 0.1994, 0.2010)
+            transforms.Normalize((0.4914, 0.4822, 0.4465),
+                                  (0.2470, 0.2435, 0.2615))
         ),
     ]
 
@@ -43,13 +44,14 @@ class iCIFAR100(iData):
     train_trsf = [
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
-        transforms.ColorJitter(brightness=63 / 255),
+        #transforms.ColorJitter(brightness=63 / 255),
     ]
     test_trsf = []
     common_trsf = [
         transforms.ToTensor(),
         transforms.Normalize(
-            mean=(0.5071, 0.4867, 0.4408), std=(0.2675, 0.2565, 0.2761)
+            transforms.Normalize((0.4914, 0.4822, 0.4465),
+                                  (0.2470, 0.2435, 0.2615))
         ),
     ]
 

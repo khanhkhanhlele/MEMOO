@@ -93,7 +93,6 @@ def _train(args):
     cnn_curve, nme_curve, no_nme = {"top1": [], "top5": []}, {"top1": [], "top5": []}, True
     start_time = time.time()
     logging.info(f"Start time:{start_time}")
-    
     for task in range(data_manager.nb_tasks):
         logging.info("All params: {}".format(count_parameters(model._network)))
         logging.info(
