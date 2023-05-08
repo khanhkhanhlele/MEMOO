@@ -1,1 +1,1 @@
-!python main_memo.py --dataset cifar10 -model memo -init 2 -incre 2 -ms 2000 -net memo_resnet18 -p fair -d 3 --train_base -d 0 
+python main_memo.py --dataset cifar10 -model memo -init 2 -incre 2 -ms 2000 -net memo_resnet18 -p fair -d 3 --train_base -d 0 
