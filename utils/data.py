@@ -15,14 +15,13 @@ class iCIFAR10(iData):
     train_trsf = [
         transforms.RandomCrop(32, padding=4),
         transforms.RandomHorizontalFlip(),
-        #transforms.ColorJitter(brightness=63 / 255),
+        transforms.ColorJitter(brightness=63 / 255),
     ]
     test_trsf = []
     common_trsf = [
         transforms.ToTensor(),
         transforms.Normalize(
-            transforms.Normalize((0.4914, 0.4822, 0.4465),
-                                  (0.2470, 0.2435, 0.2615))
+            (0.4914, 0.4822, 0.4465), (0.2470, 0.2435, 0.2615)
         ),
     ]
 
@@ -50,8 +49,7 @@ class iCIFAR100(iData):
     common_trsf = [
         transforms.ToTensor(),
         transforms.Normalize(
-            transforms.Normalize((0.4914, 0.4822, 0.4465),
-                                  (0.2470, 0.2435, 0.2615))
+            (0.4914, 0.4822, 0.4465), (0.2470, 0.2435, 0.2615)
         ),
     ]
 
