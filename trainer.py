@@ -98,7 +98,7 @@ def _train(args):
         logging.info(
             "Trainable params: {}".format(count_parameters(model._network, True))
         )
-        
+        params = count_parameters(model._network)
         model.incremental_train(data_manager)
         if task == data_manager.nb_tasks-1:
             cnn_accy, nme_accy = model.eval_task(save_conf=True)
@@ -135,7 +135,7 @@ def _train(args):
     logging.info(f"End Time:{end_time}")
     cost_time = end_time - start_time
     save_time(args, cost_time)
-    save_results(args, cnn_curve, nme_curve, no_nme)
+    save_results(args, cnn_curve, nme_curve, no_nme, params)
     if args['model_name'] not in ["podnet", "coil"]:
         save_fc(args, model)
     else:
@@ -175,7 +175,7 @@ def save_time(args, cost_time):
     with open(_log_path, "a+") as f:
         f.write(f"{args['time_str']},{args['model_name']}, {cost_time} \n")
 
-def save_results(args, cnn_curve, nme_curve, no_nme=False):
+def save_results(args, cnn_curve, nme_curve, no_nme=False, params=0):
     cnn_top1, cnn_top5 = cnn_curve["top1"], cnn_curve['top5']
     nme_top1, nme_top5 = nme_curve["top1"], nme_curve['top5']
     
@@ -190,6 +190,7 @@ def save_results(args, cnn_curve, nme_curve, no_nme=False):
             for _acc in cnn_top1[:-1]:
                 f.write(f"{_acc},")
             f.write(f"{cnn_top1[-1]} \n")
+            f.write(f"{params} \n")
     else:
         assert args['prefix'] in ['fair', 'auc']
         with open(_log_path, "a+") as f:
@@ -197,6 +198,8 @@ def save_results(args, cnn_curve, nme_curve, no_nme=False):
             for _acc in cnn_top1[:-1]:
                 f.write(f"{_acc},")
             f.write(f"{cnn_top1[-1]} \n")
+            f.write(f"{params} \n")
+            
 
     #-------CNN TOP5----------
     _log_dir = os.path.join("./results/", f"{args['prefix']}", "cnn_top5")
