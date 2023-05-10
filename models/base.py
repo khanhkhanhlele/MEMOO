@@ -21,7 +21,7 @@ class BaseLearner(object):
         self._network = None
         self._old_network = None
         self._data_memory, self._targets_memory = np.array([]), np.array([])
-        self.topk = 2
+        self.topk = 5
 
         self._memory_size = args["memory_size"]
         self._memory_per_class = args.get("memory_per_class", None)
