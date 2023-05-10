@@ -81,7 +81,7 @@ class BaseLearner(object):
         grouped = accuracy(y_pred.T[0], y_true, self._known_classes)
         ret["grouped"] = grouped
         ret["top1"] = grouped["total"]
-        ret["top{}".format(self.topk)] = np.around(
+        ret["top5"] = np.around(
             (y_pred.T == np.tile(y_true, (self.topk, 1))).sum() * 100 / len(y_true),
             decimals=2,
         )
