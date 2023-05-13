@@ -23,6 +23,7 @@ def setup_parser():
     parser = argparse.ArgumentParser(description='Reproduce of multiple continual learning algorthms.')
 
     parser.add_argument('--dataset', type=str, default="cifar100")
+    parser.add_argument('--memory_per_class', '-mpc', type=int, default=5)
     parser.add_argument('--memory_size','-ms',type=int, default=500)
     parser.add_argument('--init_cls', '-init', type=int, default=10)
     parser.add_argument('--increment', '-incre', type=int, default=10)

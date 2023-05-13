@@ -1,1 +1,1 @@
-python main_memo.py -model memo -init 20 -incre 20 --memory_size 500 -net memo_resnet18 -p fair -d 3 --train_base -d 0 
+python main_memo.py -model memo -init 20 -incre 20 --memory_size 500 -mpc 5 -net memo_resnet18 -p fair -d 3 --train_base -d 0 
